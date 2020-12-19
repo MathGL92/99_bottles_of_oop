@@ -7,11 +7,7 @@ class Bottles
   end
 
   def verses(num_start, num_end)
-    result = ''
-    num_start.downto(num_end).to_a.each do |num|
-      result += verse(num) + "\n"
-    end
-    result.delete_suffix("\n")
+    num_start.downto(num_end).map { |num| verse(num) }.join("\n")
   end
 
   def verse(num)
