@@ -13,10 +13,18 @@ class Bottles
     "#{quantity(num).capitalize} #{container(num)} of beer on the wall," \
     " #{quantity(num)} #{container(num)} of beer.\n" \
     "#{action(num)}," \
-    " #{quantity(num - 1)} #{container(num - 1)} of beer on the wall.\n"
+    " #{quantity(successor(num))} #{container(num - 1)} of beer on the wall.\n"
   end
 
   private
+
+  def successor(num)
+    if num.zero?
+      99
+    else
+      num - 1
+    end
+  end
 
   def action(num)
     if num.zero?
@@ -45,8 +53,6 @@ class Bottles
   def quantity(num)
     if num.zero?
       'no more'
-    elsif num == -1
-      '99'
     else
       num.to_s
     end
