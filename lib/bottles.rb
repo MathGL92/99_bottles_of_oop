@@ -1,6 +1,5 @@
 class Bottles
-  def initialize
-  end
+  def initialize; end
 
   def song
     verses(99, 0)
@@ -11,37 +10,51 @@ class Bottles
   end
 
   def verse(num)
-    case num
-    when 2
-      "#{num} bottles of beer on the wall, " \
-      "#{num} bottles of beer.\n" \
-      'Take one down and pass it around, ' \
-      "#{num - 1} bottle of beer on the wall.\n"
-    when 1
-      "#{num} bottle of beer on the wall, " \
-      "#{num} bottle of beer.\n" \
-      'Take it down and pass it around, ' \
-      "no more bottles of beer on the wall.\n"
-    when 0
-      'No more bottles of beer on the wall, ' \
-      "no more bottles of beer.\n" \
-      'Go to the store and buy some more, ' \
-      "99 bottles of beer on the wall.\n"
-    else
-      "#{num} bottles of beer on the wall," \
-      " #{num} bottles of beer.\n" \
-      'Take one down and pass it around, ' \
-      "#{num - 1} #{container(num - 1)} of beer on the wall.\n"
-    end
+    "#{quantity(num).capitalize} #{container(num)} of beer on the wall," \
+    " #{quantity(num)} #{container(num)} of beer.\n" \
+    "#{action(num)}" \
+    "#{quantity(successor(num))} #{container(num - 1)} of beer on the wall.\n"
   end
 
   private
+
+  def action(num)
+    if num.zero?
+      'Go to the store and buy some more, '
+    else
+      "Take #{pronoun(num)} down and pass it around, "
+    end
+  end
+
+  def successor(num)
+    if num.zero?
+      99
+    else
+      num - 1
+    end
+  end
 
   def container(num)
     if num == 1
       'bottle'
     else
       'bottles'
+    end
+  end
+
+  def pronoun(num)
+    if num == 1
+      'it'
+    else
+      'one'
+    end
+  end
+
+  def quantity(num)
+    if num.zero?
+      'no more'
+    else
+      num.to_s
     end
   end
 end
