@@ -20,6 +20,24 @@ VERSE
     assert_equal expected, ::Bottles.new.verse(89)
   end
 
+#   def test_verse_7
+#     # skip
+#     expected = <<-VERSE
+# 7 bottles of beer on the wall, 7 bottles of beer.
+# Take one down and pass it around, one six-pack of beer on the wall.
+#     VERSE
+#     assert_equal expected, ::Bottles.new.verse(7)
+#   end
+
+#   def test_verse_6
+#     # skip
+#     expected = <<-VERSE
+# One six-pack of beer on the wall, one six-pack of beer.
+# Take one down and pass it around, 5 bottles of beer on the wall.
+#     VERSE
+#     assert_equal expected, ::Bottles.new.verse(6)
+#   end
+
   def test_verse_2
     # skip
     expected = <<-VERSE
