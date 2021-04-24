@@ -13,7 +13,7 @@ class Bottles
     "#{quantity(num).capitalize} #{container(num)} of beer on the wall," \
     " #{quantity(num)} #{container(num)} of beer.\n" \
     "#{action(num)}," \
-    " #{quantity(successor(num))} #{container(num - 1)} of beer on the wall.\n"
+    " #{quantity(successor(num))} #{container(successor(num))} of beer on the wall.\n"
   end
 
   private
