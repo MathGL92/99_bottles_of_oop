@@ -1,6 +1,4 @@
 class Bottles
-  def initialize; end
-
   def song
     verses(99, 0)
   end
@@ -10,51 +8,70 @@ class Bottles
   end
 
   def verse(num)
-    "#{quantity(num).capitalize} #{container(num)} of beer on the wall," \
-    " #{quantity(num)} #{container(num)} of beer.\n" \
-    "#{action(num)}," \
-    " #{quantity(successor(num))} #{container(successor(num))} of beer on the wall.\n"
+    bottle_number = BottleNumber.new(num)
+    next_bottle_number = BottleNumber.new(bottle_number.successor)
+
+    "#{bottle_number.quantity.capitalize} #{bottle_number.container} of beer on the wall," \
+    " #{bottle_number.quantity} #{bottle_number.container} of beer.\n" \
+    "#{bottle_number.action}," \
+    " #{next_bottle_number.quantity} #{next_bottle_number.container} of beer on the wall.\n"
   end
 
   private
 
-  def successor(num)
-    if num.zero?
+  def container(num)
+    BottleNumber.new(num).container
+  end
+
+  def quantity(num)
+    BottleNumber.new(num).quantity
+  end
+end
+
+class BottleNumber
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def successor
+    if number.zero?
       99
     else
-      num - 1
+      number - 1
     end
   end
 
-  def action(num)
-    if num.zero?
+  def action
+    if number.zero?
       'Go to the store and buy some more'
     else
-      "Take #{pronoun(num)} down and pass it around"
+      "Take #{pronoun} down and pass it around"
     end
   end
 
-  def container(num)
-    if num == 1
+  def container
+    if number == 1
       'bottle'
     else
       'bottles'
     end
   end
 
-  def pronoun(num)
-    if num == 1
+  def pronoun
+    if number == 1
       'it'
     else
       'one'
     end
   end
 
-  def quantity(num)
-    if num.zero?
+  def quantity
+    if number.zero?
       'no more'
     else
-      num.to_s
+      number.to_s
     end
   end
 end
