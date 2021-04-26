@@ -20,15 +20,23 @@ end
 class BottleNumber
   attr_reader :number
 
+  # def self.for(number)
+    # case number
+    # when 0
+    #   BottleNumber0
+    # when 1
+    #   BottleNumber1
+    # when 6
+    #   BottleNumber6
+    # else
+    #   BottleNumber
+    # end.new(number)
+  # end
+
   def self.for(number)
-    case number
-    when 0
-      BottleNumber0
-    when 1
-      BottleNumber1
-    when 6
-      BottleNumber6
-    else
+    begin
+      const_get("BottleNumber#{number}")
+    rescue NameError
       BottleNumber
     end.new(number)
   end
